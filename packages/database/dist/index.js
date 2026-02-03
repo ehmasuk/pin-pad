@@ -17,6 +17,15 @@ var connectDb = async (url, dbName) => {
     socketTimeoutMS: 45e3
     // Close sockets after inactivity
   });
+  mongoose.connection.on("connected", () => {
+    console.log("Mongoose connected to DB Cluster");
+  });
+  mongoose.connection.on("error", (err) => {
+    console.error("Mongoose connection error:", err);
+  });
+  mongoose.connection.on("disconnected", () => {
+    console.log("Mongoose disconnected");
+  });
   cachedConnection = connection;
   return connection;
 };

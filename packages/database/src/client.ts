@@ -14,6 +14,18 @@ export const connectDb = async (url: string, dbName: string): Promise<typeof mon
     socketTimeoutMS: 45000, // Close sockets after inactivity
   });
 
+  mongoose.connection.on("connected", () => {
+    console.log("Mongoose connected to DB Cluster");
+  });
+
+  mongoose.connection.on("error", (err) => {
+    console.error("Mongoose connection error:", err);
+  });
+
+  mongoose.connection.on("disconnected", () => {
+    console.log("Mongoose disconnected");
+  });
+
   cachedConnection = connection;
   return connection;
 };

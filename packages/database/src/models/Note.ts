@@ -1,6 +1,4 @@
-import mongoose from "mongoose";
-
-const { Schema, model, models } = mongoose;
+import mongoose, { Schema, type HydratedDocument, type Model } from "mongoose";
 
 export interface INote {
   noteName: string;
@@ -11,7 +9,7 @@ export interface INote {
   createdAt: Date;
 }
 
-export type NoteDocument = mongoose.HydratedDocument<INote>;
+export type NoteDocument = HydratedDocument<INote>;
 
 const NoteSchema = new Schema<INote>(
   {
@@ -21,16 +19,13 @@ const NoteSchema = new Schema<INote>(
       unique: true,
       index: true,
     },
-
     content: {
       type: Buffer,
       required: true,
     },
-
     updatedAt: {
       type: Date,
       default: Date.now,
-      index: true,
     },
     password: {
       type: String,
@@ -46,5 +41,4 @@ const NoteSchema = new Schema<INote>(
 
 NoteSchema.index({ updatedAt: 1 }, { expireAfterSeconds: 60 * 60 * 24 * 3 });
 
-const Note = (models.Note as mongoose.Model<INote>) || model<INote>("Note", NoteSchema);
-export default Note;
+export const Note = (mongoose.models.Note as Model<INote>) || mongoose.model<INote>("Note", NoteSchema);

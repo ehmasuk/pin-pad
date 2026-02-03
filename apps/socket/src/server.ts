@@ -1,7 +1,7 @@
 // server.ts
 import { Server } from "@hocuspocus/server";
+import { Note } from "@workspace/database";
 import * as Y from "yjs";
-import Note from "./models/Note.js";
 
 const PORT = process.env.PORT || 7070;
 

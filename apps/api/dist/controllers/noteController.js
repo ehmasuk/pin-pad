@@ -1,6 +1,6 @@
+import { Note } from "@workspace/database";
 import bcrypt from "bcryptjs";
 import { z } from "zod";
-import Note, {} from "../models/Note.js";
 import newError from "../utils/newError.js";
 import successResponse from "../utils/successResponse.js";
 const passwordSchema = z.string().min(4, "Password must be at least 4 characters long");

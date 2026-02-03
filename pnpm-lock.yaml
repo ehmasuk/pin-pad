@@ -33,6 +33,9 @@ importers:
       '@types/morgan':
         specifier: ^1.9.10
         version: 1.9.10
+      '@workspace/database':
+        specifier: workspace:*
+        version: link:../../packages/database
       bcryptjs:
         specifier: ^3.0.3
         version: 3.0.3
@@ -48,9 +51,6 @@ importers:
       jsonwebtoken:
         specifier: ^9.0.3
         version: 9.0.3
-      mongoose:
-        specifier: ^9.1.5
-        version: 9.1.5(socks@2.8.6)
       zod:
         specifier: ^3.25.76
         version: 3.25.76
@@ -82,12 +82,12 @@ importers:
       '@hocuspocus/server':
         specifier: ^3.4.4
         version: 3.4.4(y-protocols@1.0.7(yjs@13.6.29))(yjs@13.6.29)
+      '@workspace/database':
+        specifier: workspace:*
+        version: link:../../packages/database
       dotenv:
         specifier: ^17.2.3
         version: 17.2.3
-      mongoose:
-        specifier: ^9.1.5
-        version: 9.1.5(socks@2.8.6)
       yjs:
         specifier: ^13.6.29
         version: 13.6.29
@@ -200,6 +200,22 @@ importers:
         version: 9.39.1(jiti@2.6.1)
       typescript:
         specifier: ^5.9.3
+        version: 5.9.3
+
+  packages/database:
+    dependencies:
+      mongoose:
+        specifier: ^9.1.5
+        version: 9.1.5(socks@2.8.6)
+    devDependencies:
+      '@types/node':
+        specifier: ^24.10.1
+        version: 24.10.9
+      '@workspace/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      typescript:
+        specifier: ^5.0.0
         version: 5.9.3
 
   packages/eslint-config:

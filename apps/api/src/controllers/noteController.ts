@@ -1,7 +1,7 @@
+import { Note, type NoteDocument } from "@workspace/database";
 import bcrypt from "bcryptjs";
 import type { Request, Response } from "express";
 import { z } from "zod";
-import Note, { type NoteDocument } from "../models/Note.js";
 import newError from "../utils/newError.js";
 import successResponse from "../utils/successResponse.js";
 

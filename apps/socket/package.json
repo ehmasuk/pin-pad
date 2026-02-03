@@ -23,7 +23,7 @@
   "dependencies": {
     "@hocuspocus/server": "^3.4.4",
     "dotenv": "^17.2.3",
-    "mongoose": "^9.1.5",
+    "@workspace/database": "workspace:*",
     "yjs": "^13.6.29",
     "zod": "^3.25.76"
   }

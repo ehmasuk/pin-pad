@@ -8,7 +8,6 @@ import routes from "./routes/index.js";
 
 const app: Express = express();
 
-// end fix
 
 // load all middlewares
 middlewares(app);

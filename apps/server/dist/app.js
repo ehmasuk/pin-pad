@@ -3,7 +3,6 @@ import { catchGlobalErrors, notFound, } from "./middlewares/globalErrorHandlers.
 import middlewares from "./middlewares/index.js";
 import routes from "./routes/index.js";
 const app = express();
-// end fix
 // load all middlewares
 middlewares(app);
 // load all routes

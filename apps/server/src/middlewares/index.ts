@@ -8,11 +8,15 @@ const middlewares = (app: any): void => {
   app.use(express.urlencoded({ extended: true }));
   app.use(
     cors({
-      origin: ["http://localhost:3000", "https://bookora.vercel.app", "https://pinpad.vercel.app"],
+      origin: ["http://localhost:3000", "https://pinpad.vercel.app"],
       credentials: true,
+      methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+      allowedHeaders: ["Content-Type", "Authorization"],
       exposedHeaders: ["Content-Disposition"],
-    }),
+    })
   );
+
+  app.options("*", cors());
 };
 
 export default middlewares;

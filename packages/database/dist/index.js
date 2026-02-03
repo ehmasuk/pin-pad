@@ -3,10 +3,21 @@ import { default as default2 } from "mongoose";
 
 // src/client.ts
 import mongoose from "mongoose";
+var cachedConnection = null;
 var connectDb = async (url, dbName) => {
+  if (cachedConnection) {
+    return cachedConnection;
+  }
   const connection = await mongoose.connect(url, {
-    dbName
+    dbName,
+    bufferCommands: false,
+    // Return error immediately if connection is down
+    serverSelectionTimeoutMS: 5e3,
+    // Fail quickly if no server found
+    socketTimeoutMS: 45e3
+    // Close sockets after inactivity
   });
+  cachedConnection = connection;
   return connection;
 };
 

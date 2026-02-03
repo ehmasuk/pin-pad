@@ -3,9 +3,22 @@ import { Server } from "@hocuspocus/server";
 import * as Y from "yjs";
 import app from "./app.js";
 import Note from "./models/Note.js";
-
+import cors from "cors";
 const EXPRESS_PORT = 8080;
 const HOCUSPOCUS_PORT = 7070;
+
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://pinpad.vercel.app"],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    exposedHeaders: ["Content-Disposition"],
+  })
+);
+
+
+app.options("*", cors());
 
 export function startListening() {
   const hocuspocus = new Server({

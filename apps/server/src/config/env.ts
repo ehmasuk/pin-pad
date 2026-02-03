@@ -4,8 +4,6 @@ import { z } from "zod";
 dotenv.config();
 
 const envSchema = z.object({
-  GROQ_API_KEY: z.string(),
-  JWT_SECRET: z.string(),
   MONGODB_URL: z.string(),
   DB_NAME: z.string(),
 });

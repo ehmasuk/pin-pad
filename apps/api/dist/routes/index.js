@@ -1,5 +1,7 @@
+import healthRoutes from "./healthRoutes.js";
 import noteRoutes from "./noteRoutes.js";
 const routes = (app) => {
+    app.use("/api/health", healthRoutes);
     app.use("/api/notes", noteRoutes);
 };
 export default routes;

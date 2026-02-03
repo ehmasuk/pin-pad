@@ -1,0 +1,1 @@
+{"version":3,"file":"healthRoutes.js","sourceRoot":"","sources":["../../src/routes/healthRoutes.ts"],"names":[],"mappings":"AAAA,OAAO,OAAO,MAAM,SAAS,CAAC;AAC9B,OAAO,EAAE,WAAW,EAAE,MAAM,oCAAoC,CAAC;AACjE,OAAO,UAAU,MAAM,wBAAwB,CAAC;AAEhD,MAAM,MAAM,GAAmB,OAAO,CAAC,MAAM,EAAE,CAAC;AAEhD,MAAM,CAAC,GAAG,CAAC,GAAG,EAAE,UAAU,CAAC,WAAW,CAAC,CAAC,CAAC;AAEzC,eAAe,MAAM,CAAC"}

@@ -29,6 +29,12 @@ var connectDb = async (url, dbName) => {
   cachedConnection = connection;
   return connection;
 };
+var getDbState = () => {
+  if (cachedConnection) {
+    return cachedConnection.connection.readyState;
+  }
+  return mongoose.connection.readyState;
+};
 
 // src/models/Note.ts
 import mongoose2, { Schema } from "mongoose";
@@ -64,5 +70,6 @@ var Note = mongoose2.models.Note || mongoose2.model("Note", NoteSchema);
 export {
   Note,
   connectDb,
+  getDbState,
   default2 as mongoose
 };

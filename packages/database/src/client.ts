@@ -29,3 +29,10 @@ export const connectDb = async (url: string, dbName: string): Promise<typeof mon
   cachedConnection = connection;
   return connection;
 };
+
+export const getDbState = () => {
+  if (cachedConnection) {
+    return cachedConnection.connection.readyState;
+  }
+  return mongoose.connection.readyState;
+};

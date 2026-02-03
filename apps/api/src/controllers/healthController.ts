@@ -1,9 +1,9 @@
-import { mongoose } from "@workspace/database";
+import { getDbState } from "@workspace/database";
 import type { Request, Response } from "express";
 import successResponse from "../utils/successResponse.js";
 
 export const healthCheck = async (_req: Request, res: Response) => {
-  const dbState = mongoose.connection.readyState;
+  const dbState = getDbState();
   const dbStatus =
     (
       {

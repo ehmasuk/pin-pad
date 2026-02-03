@@ -8,7 +8,7 @@ const middlewares = (app: any): void => {
   app.use(express.urlencoded({ extended: true }));
   app.use(
     cors({
-      origin: "*",
+      origin: ["http://localhost:3000", "https://bookora.vercel.app", "https://pinpad.vercel.app"],
       credentials: true,
       exposedHeaders: ["Content-Disposition"],
     }),

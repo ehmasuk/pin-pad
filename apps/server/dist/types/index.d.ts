@@ -4,11 +4,6 @@ export interface CustomRequest extends Request {
         id: string;
     };
 }
-export interface DecodedTokenType {
-    id: string;
-    iat?: number;
-    exp?: number;
-}
 export interface ErrorWithStatus extends Error {
     statusCode?: number;
 }

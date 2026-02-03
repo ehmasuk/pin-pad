@@ -6,7 +6,7 @@ const middlewares = (app) => {
     app.use(morgan("dev"));
     app.use(express.urlencoded({ extended: true }));
     app.use(cors({
-        origin: ["http://localhost:3000", "https://bookora.vercel.app"],
+        origin: "*",
         credentials: true,
         exposedHeaders: ["Content-Disposition"],
     }));

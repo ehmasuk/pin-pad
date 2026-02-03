@@ -2,7 +2,9 @@ import { Button } from "@workspace/ui/components/button";
 import { Kbd } from "@workspace/ui/components/kbd";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@workspace/ui/components/tooltip";
 
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+import type { ComponentPropsWithoutRef } from "react";
+
+interface Props extends ComponentPropsWithoutRef<typeof Button> {
   icon: React.ReactNode;
   tooltip?: string;
   kbd?: string;

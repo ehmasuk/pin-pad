@@ -8,14 +8,14 @@ import { Loader2, Lock, Unlock } from "lucide-react";
 import { useState } from "react";
 
 interface PasswordModalProps {
-  documentName: string;
+  noteName: string;
   isOpen: boolean;
   onClose: () => void;
   isLocked: boolean;
   onStatusChange: (isLocked: boolean) => void;
 }
 
-export function PasswordModal({ documentName, isOpen, onClose, isLocked, onStatusChange }: PasswordModalProps) {
+export function PasswordModal({ noteName, isOpen, onClose, isLocked, onStatusChange }: PasswordModalProps) {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -30,7 +30,7 @@ export function PasswordModal({ documentName, isOpen, onClose, isLocked, onStatu
     setError("");
 
     try {
-      const res = await fetch(`http://localhost:8080/api/documents/${documentName}/lock`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/notes/${noteName}/lock`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password }),
@@ -39,7 +39,7 @@ export function PasswordModal({ documentName, isOpen, onClose, isLocked, onStatu
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.message || "Failed to lock document");
+        throw new Error(data.message || "Failed to lock note");
       }
 
       onStatusChange(true);
@@ -57,7 +57,7 @@ export function PasswordModal({ documentName, isOpen, onClose, isLocked, onStatu
     setError("");
 
     try {
-      const res = await fetch(`http://localhost:8080/api/documents/${documentName}/unlock`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/notes/${noteName}/unlock`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password }),
@@ -85,9 +85,9 @@ export function PasswordModal({ documentName, isOpen, onClose, isLocked, onStatu
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             {isLocked ? <Unlock className="h-5 w-5" /> : <Lock className="h-5 w-5" />}
-            {isLocked ? "Unlock Document" : "Protect Document"}
+            {isLocked ? "Unlock Note" : "Protect Note"}
           </DialogTitle>
-          <DialogDescription>{isLocked ? "Enter current password to unlock this document." : "Set a password to protect this document. Minimum 4 characters."}</DialogDescription>
+          <DialogDescription>{isLocked ? "Enter current password to unlock this note." : "Set a password to protect this note. Minimum 4 characters."}</DialogDescription>
         </DialogHeader>
         <div className="flex flex-col gap-4 py-4">
           <div className="grid w-full items-center gap-1.5">
@@ -113,7 +113,7 @@ export function PasswordModal({ documentName, isOpen, onClose, isLocked, onStatu
           </Button>
           <Button onClick={isLocked ? handleUnlock : handleLock} disabled={loading || password.length < 4}>
             {loading && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
-            {isLocked ? "Unlock Document" : "Set Password"}
+            {isLocked ? "Unlock Note" : "Set Password"}
           </Button>
         </DialogFooter>
       </DialogContent>

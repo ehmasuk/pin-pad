@@ -25,11 +25,11 @@ export default function Page({ params }: { params: Promise<{ editorId: string }>
   useEffect(() => {
     const checkStatus = async () => {
       try {
-        const res = await fetch(`http://localhost:8080/api/documents/${editorId}/status`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/notes/${editorId}/status`);
         const { data } = await res.json();
         setIsLocked(data.isLocked);
       } catch (err) {
-        console.error("Failed to check document status", err);
+        console.error("Failed to check note status", err);
         setIsLocked(false);
       }
     };
@@ -49,7 +49,7 @@ export default function Page({ params }: { params: Promise<{ editorId: string }>
     return (
       <div className="max-w-6xl mx-auto py-12 px-4 sm:px-0 flex flex-col min-h-screen">
         <main className="flex-1 flex items-center justify-center">
-          <UnlockView documentName={editorId} onVerified={() => setVerified(true)} />
+          <UnlockView noteName={editorId} onVerified={() => setVerified(true)} />
         </main>
       </div>
     );
@@ -57,7 +57,7 @@ export default function Page({ params }: { params: Promise<{ editorId: string }>
 
   return (
     <div className="max-w-6xl mx-auto py-12 px-4 sm:px-0 flex flex-col min-h-screen">
-      <Navbar documentName={editorId} isLocked={isLocked} onStatusChange={setIsLocked} editor={editor} />
+      <Navbar noteName={editorId} isLocked={isLocked} onStatusChange={setIsLocked} editor={editor} />
       <main className="flex-1 flex flex-col">
         <EditorComponent id={editorId} onEditorReady={setEditor} />
       </main>

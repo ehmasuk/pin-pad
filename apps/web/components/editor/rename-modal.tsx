@@ -9,25 +9,25 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface RenameModalProps {
-  documentName: string;
+  noteName: string;
   isOpen: boolean;
   onClose: () => void;
 }
 
-export function RenameModal({ documentName, isOpen, onClose }: RenameModalProps) {
+export function RenameModal({ noteName, isOpen, onClose }: RenameModalProps) {
   const router = useRouter();
-  const [newName, setNewName] = useState(documentName);
+  const [newName, setNewName] = useState(noteName);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleRename = async () => {
-    if (newName === documentName) {
+    if (newName === noteName) {
       onClose();
       return;
     }
 
     if (newName.length < 8) {
-      setError("Document name must be at least 8 characters long");
+      setError("Note name must be at least 8 characters long");
       return;
     }
 
@@ -35,7 +35,7 @@ export function RenameModal({ documentName, isOpen, onClose }: RenameModalProps)
     setError(null);
 
     try {
-      const response = await fetch(`http://localhost:8080/api/documents/${documentName}/rename`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/notes/${noteName}/rename`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ newName }),
@@ -44,7 +44,7 @@ export function RenameModal({ documentName, isOpen, onClose }: RenameModalProps)
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || "Failed to rename document");
+        throw new Error(data.message || "Failed to rename note");
       }
 
       // Success
@@ -65,14 +65,14 @@ export function RenameModal({ documentName, isOpen, onClose }: RenameModalProps)
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Edit2 className="h-5 w-5" />
-            Rename Document
+            Rename Note
           </DialogTitle>
-          <DialogDescription>Change the URL of this document. The old URL will no longer be accessible.</DialogDescription>
+          <DialogDescription>Change the URL of this note. The old URL will no longer be accessible.</DialogDescription>
         </DialogHeader>
 
         <div className="flex flex-col gap-6 py-4">
           <div className="flex flex-col gap-2">
-            <Label htmlFor="newName">New Document Name</Label>
+            <Label htmlFor="newName">New Note Name</Label>
             <div className="flex items-center gap-1 p-2 rounded-md border bg-muted/20 border-border">
               <span className="text-xs text-muted-foreground whitespace-nowrap">{currentUrlPrefix}</span>
               <Input
@@ -83,7 +83,7 @@ export function RenameModal({ documentName, isOpen, onClose }: RenameModalProps)
                   setError(null);
                 }}
                 className="h-8 border-none focus-visible:ring-0 px-1 bg-transparent"
-                placeholder="new-document-name"
+                placeholder="new-note-name"
               />
             </div>
             <p className="text-[10px] text-muted-foreground">Spaces will be replaced with hyphens.</p>

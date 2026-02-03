@@ -34,7 +34,7 @@ export default function Editor({ id, onEditorReady }: EditorProps) {
   const ydoc = new Y.Doc();
 
   const provider = new HocuspocusProvider({
-    url: "ws://localhost:7070",
+    url: process.env.NEXT_PUBLIC_SOCKET_URL || "ws://localhost:7070",
     name: id,
     document: ydoc,
   });

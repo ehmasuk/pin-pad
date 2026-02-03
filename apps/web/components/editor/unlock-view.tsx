@@ -7,11 +7,11 @@ import { ArrowRight, Loader2, Lock } from "lucide-react";
 import { useState } from "react";
 
 interface UnlockViewProps {
-  documentName: string;
+  noteName: string;
   onVerified: () => void;
 }
 
-export function UnlockView({ documentName, onVerified }: UnlockViewProps) {
+export function UnlockView({ noteName, onVerified }: UnlockViewProps) {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -23,7 +23,7 @@ export function UnlockView({ documentName, onVerified }: UnlockViewProps) {
     setError("");
 
     try {
-      const res = await fetch(`http://localhost:8080/api/documents/${documentName}/verify`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/notes/${noteName}/verify`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password }),
@@ -50,8 +50,8 @@ export function UnlockView({ documentName, onVerified }: UnlockViewProps) {
           <div className="mx-auto w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
             <Lock className="h-6 w-6 text-primary" />
           </div>
-          <CardTitle>Protected Document</CardTitle>
-          <CardDescription>This document is password protected. Enter the PIN to view and edit.</CardDescription>
+          <CardTitle>Protected Note</CardTitle>
+          <CardDescription>This note is password protected. Enter the PIN to view and edit.</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex flex-col gap-4">

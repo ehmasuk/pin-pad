@@ -10,13 +10,13 @@ import { RenameModal } from "./rename-modal";
 import { ShareModal } from "./share-modal";
 
 interface NavbarProps {
-  documentName: string;
+  noteName: string;
   isLocked: boolean;
   onStatusChange: (isLocked: boolean) => void;
   editor: TiptapEditor | null;
 }
 
-function Navbar({ documentName, isLocked, onStatusChange, editor }: NavbarProps) {
+function Navbar({ noteName, isLocked, onStatusChange, editor }: NavbarProps) {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,7 +40,7 @@ function Navbar({ documentName, isLocked, onStatusChange, editor }: NavbarProps)
   return (
     <div className="flex justify-between items-center p-3">
       <div className="flex items-center gap-2">
-        <p className="font-medium text-lg text-slate-600 dark:text-slate-400 tracking-tighter">Share Note</p>
+        <p className="font-medium text-lg text-slate-600 dark:text-slate-400 tracking-tighter">PinPad</p>
         {isLocked ? <LockKeyhole className="w-4 dark:text-slate-400  text-gray-400" /> : <Globe className="w-4 dark:text-slate-400  text-gray-400" />}
       </div>
       <div className="flex items-center gap-2">
@@ -60,11 +60,11 @@ function Navbar({ documentName, isLocked, onStatusChange, editor }: NavbarProps)
         <IconButton icon={<Edit2 />} tooltip="Edit note url" onClick={() => setIsRenameModalOpen(true)}></IconButton>
       </div>
 
-      <PasswordModal documentName={documentName} isLocked={isLocked} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onStatusChange={onStatusChange} />
+      <PasswordModal noteName={noteName} isLocked={isLocked} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onStatusChange={onStatusChange} />
 
       <ShareModal isOpen={isShareModalOpen} onClose={() => setIsShareModalOpen(false)} isLocked={isLocked} />
 
-      <RenameModal documentName={documentName} isOpen={isRenameModalOpen} onClose={() => setIsRenameModalOpen(false)} />
+      <RenameModal noteName={noteName} isOpen={isRenameModalOpen} onClose={() => setIsRenameModalOpen(false)} />
     </div>
   );
 }

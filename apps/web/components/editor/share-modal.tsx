@@ -35,22 +35,22 @@ export function ShareModal({ isOpen, onClose, isLocked }: ShareModalProps) {
             <Share2 className="h-5 w-5" />
             Share Note
           </DialogTitle>
-          <DialogDescription>Anyone with the link can edit this document.</DialogDescription>
+          <DialogDescription>Anyone with the link can edit this note.</DialogDescription>
         </DialogHeader>
 
-          <div className="flex items-center justify-between p-3 rounded-lg border bg-muted/10 border-border/40">
-            <div className="flex items-center gap-2">
-              {isLocked ? <Lock className="h-4 w-4 text-green-500" /> : <Globe className="h-4 w-4 text-slate-400" />}
-              <span className="text-sm font-medium">Note Status</span>
-            </div>
-            <span className={`text-xs px-2 py-0.5 rounded-full uppercase tracking-wider ${isLocked ? "bg-green-500/10 text-green-500" : "bg-slate-500/10 text-slate-500"}`}>
-              {isLocked ? "Locked" : "Public"}
-            </span>
+        <div className="flex items-center justify-between p-3 rounded-lg border bg-muted/10 border-border/40">
+          <div className="flex items-center gap-2">
+            {isLocked ? <Lock className="h-4 w-4 text-green-500" /> : <Globe className="h-4 w-4 text-slate-400" />}
+            <span className="text-sm font-medium">Note Status</span>
           </div>
+          <span className={`text-xs px-2 py-0.5 rounded-full uppercase tracking-wider ${isLocked ? "bg-green-500/10 text-green-500" : "bg-slate-500/10 text-slate-500"}`}>
+            {isLocked ? "Locked" : "Public"}
+          </span>
+        </div>
 
         <div className="flex flex-col gap-6 py-4">
           <div className="flex flex-col gap-2">
-            <Label htmlFor="link">Document Link</Label>
+            <Label htmlFor="link">Note Link</Label>
             <div className="flex items-center gap-2">
               <Input id="link" value={shareUrl} readOnly className="flex-1 bg-muted/30" />
               <Button size="icon" onClick={handleCopy} className="shrink-0">
@@ -58,8 +58,6 @@ export function ShareModal({ isOpen, onClose, isLocked }: ShareModalProps) {
               </Button>
             </div>
           </div>
-
-
         </div>
       </DialogContent>
     </Dialog>

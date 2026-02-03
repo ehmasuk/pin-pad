@@ -2,7 +2,7 @@
 import { Server } from "@hocuspocus/server";
 import * as Y from "yjs";
 import app from "./app.js";
-import DocumentModel from "./models/Document.js";
+import Note from "./models/Note.js";
 
 const EXPRESS_PORT = 8080;
 const HOCUSPOCUS_PORT = 7070;
@@ -11,24 +11,24 @@ export function startListening() {
   const hocuspocus = new Server({
     port: HOCUSPOCUS_PORT,
 
-    async onLoadDocument({ documentName }) {
+    async onLoadDocument({ documentName: noteName }) {
       const doc = new Y.Doc();
 
-      const existing = await DocumentModel.findOne({ documentName });
+      const existing = await Note.findOne({ noteName });
 
       if (existing && existing.content) {
         Y.applyUpdate(doc, existing.content);
-        console.log("Loaded:", documentName);
+        console.log("Loaded:", noteName);
       }
 
       return doc;
     },
 
-    async onStoreDocument({ documentName, document }) {
+    async onStoreDocument({ documentName: noteName, document }) {
       const update = Y.encodeStateAsUpdate(document);
 
-      await DocumentModel.findOneAndUpdate(
-        { documentName },
+      await Note.findOneAndUpdate(
+        { noteName },
         {
           content: Buffer.from(update),
           updatedAt: new Date(),
@@ -36,7 +36,7 @@ export function startListening() {
         { upsert: true },
       );
 
-      console.log("Saved:", documentName);
+      console.log("Saved:", noteName);
     },
   });
 

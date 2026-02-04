@@ -5,7 +5,7 @@ import ThemeChanger from "../global/theme-changer";
 
 function Navbar() {
   return (
-    <div className="flex items-center gap-4 justify-between">
+    <div className="flex items-end gap-4 justify-between">
       <Logo size="md" />
       <div className="flex gap-4 items-center">
         <ThemeChanger />

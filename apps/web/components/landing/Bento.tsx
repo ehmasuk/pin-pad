@@ -1,26 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Clipboard, Link2, Lock, Share2, Users } from "lucide-react";
+import { Check, Clipboard, Link2, Lock, Share2, User, Users } from "lucide-react";
 import { useEffect, useState } from "react";
 import Logo from "../global/Logo";
 
 const Bento = () => {
   return (
-    <div className="w-full max-w-6xl mx-auto px-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[200px]">
-        {/* Live Editing Feature - Large */}
-        <LiveEditingCard />
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Live Editing Feature - Large */}
+      <LiveEditingCard />
 
-        {/* Real-time Collaboration */}
-        <CollaborationCard />
+      {/* Real-time Collaboration */}
+      <CollaborationCard />
 
-        {/* AI Text Furnishing */}
-        {/* <AICard /> */}
-
-        {/* Shareable Links */}
-        <ShareableLinksCard />
-      </div>
+      {/* Shareable Links */}
+      <ShareableLinksCard />
     </div>
   );
 };
@@ -31,22 +26,24 @@ const LiveEditingCard = () => {
   const [text2, setText2] = useState("");
   const [isTyping1, setIsTyping1] = useState(false);
   const [isTyping2, setIsTyping2] = useState(false);
-  
-  const fullText1 = "The quick brown fox jumps over the lazy dog. Real-time editing at its finest! The quick brown fox jumps over the lazy dog. Real-time editing at its finest!";
-  const fullText2 = "Collaborative editing makes teamwork seamless. Multiple people can work together in real-time without any conflicts or delays!";
+
+  const fullText1 =
+    "Project kickoff meeting scheduled for next Monday at 10 AM. Main agenda: define project scope, assign team roles, and set initial milestones.";
+
+  const fullText2 = "I'll handle the backend API design and database schema. Also, we should consider using WebSockets for real-time sync.";
 
   useEffect(() => {
     let index1 = 0;
     let index2 = 0;
     let startSecondTyper = false;
-    
+
     const interval = setInterval(() => {
       // Start user typing first
       if (index1 <= fullText1.length) {
         setIsTyping1(true);
         setText1(fullText1.slice(0, index1));
         index1++;
-        
+
         // After 20 characters, start the second typer too
         if (index1 > 20 && !startSecondTyper) {
           startSecondTyper = true;
@@ -54,7 +51,7 @@ const LiveEditingCard = () => {
       } else {
         setIsTyping1(false);
       }
-      
+
       // Anonymous starts typing after user has typed some text
       if (startSecondTyper && index2 <= fullText2.length) {
         setIsTyping2(true);
@@ -63,7 +60,7 @@ const LiveEditingCard = () => {
       } else if (index2 > fullText2.length) {
         setIsTyping2(false);
       }
-      
+
       // Reset when both are done
       if (index1 > fullText1.length && index2 > fullText2.length) {
         setTimeout(() => {
@@ -86,7 +83,7 @@ const LiveEditingCard = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="md:col-span-2 shadow-sm border border-black/5 lg:row-span-2 rounded-lg p-6 overflow-hidden relative group"
+      className="md:col-span-2 border bg-purple-500/5 dark:bg-white/10 border-black/5 dark:border-white/10 lg:row-span-2 rounded-lg p-6 overflow-hidden relative group"
     >
       <div className="flex items-center justify-between">
         <Logo size="sm" />
@@ -97,57 +94,40 @@ const LiveEditingCard = () => {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-slate-900 rounded-lg p-6 h-[calc(100%-2rem)] border border-black/10 mt-3 relative">
+      <div className="bg-white dark:bg-black/50 rounded-lg p-6 pt-8 min-h-[160px] lg:min-h-[calc(100%-2rem)] border border-black/10 mt-3 relative">
         {/* User's text */}
         <div className="text-sm text-slate-700 dark:text-slate-300 relative">
           {text1}
-          {isTyping1 && (
-            <motion.span 
-              animate={{ opacity: [1, 0, 1] }} 
-              transition={{ duration: 0.8, repeat: Infinity }} 
-              className="inline-block w-0.5 h-4 bg-blue-600 dark:bg-blue-400 ml-0.5" 
-            />
-          )}
+          {isTyping1 && <motion.span animate={{ opacity: [1, 0, 1] }} transition={{ duration: 0.8, repeat: Infinity }} className="inline-block w-0.5 h-4 bg-blue-600 dark:bg-blue-400 ml-0.5" />}
           {isTyping1 && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="absolute -top-4 left-0 px-2 py-0 bg-blue-100 dark:bg-blue-900/50 rounded-full text-xs text-blue-700 dark:text-blue-300 font-medium"
+              className="absolute -top-5 left-0 px-2 py-0 bg-blue-100 dark:bg-blue-900/50 text-xs text-blue-700 dark:text-blue-300 font-medium"
             >
-              You
+              You are typing...
             </motion.div>
           )}
         </div>
-        
+
         {/* Anonymous user's text */}
         <div className="text-sm text-slate-700 dark:text-slate-300 mt-20 relative">
           {text2}
-          {isTyping2 && (
-            <motion.span 
-              animate={{ opacity: [1, 0, 1] }} 
-              transition={{ duration: 0.8, repeat: Infinity }} 
-              className="inline-block w-0.5 h-4 bg-purple-600 dark:bg-purple-400 ml-0.5" 
-            />
-          )}
+          {isTyping2 && <motion.span animate={{ opacity: [1, 0, 1] }} transition={{ duration: 0.8, repeat: Infinity }} className="inline-block w-0.5 h-4 bg-purple-600 dark:bg-purple-400 ml-0.5" />}
           {isTyping2 && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="absolute -top-4 left-0 px-2 py-0 bg-purple-100 dark:bg-purple-900/50 rounded-full text-xs text-purple-700 dark:text-purple-300 font-medium flex items-center gap-1.5"
+              className="absolute -top-5 left-0 px-2 py-0 bg-purple-100 dark:bg-purple-900/50 text-xs text-purple-700 dark:text-purple-300 font-medium items-center gap-1.5"
             >
               <span className="w-2 h-2 bg-purple-500 rounded-full" />
-              Anonymous
+              Anonymous is typing...
             </motion.div>
           )}
         </div>
-        
-        <div className="mt-6 flex items-center absolute left-6 bottom-6 justify-end gap-2 text-xs text-black dark:text-slate-400">
-          <span className="px-2 py-1 border border-black/10 bg-white dark:bg-slate-900/30 rounded-lg">
-            {(text1.split(" ").length + text2.split(" ").length - 2)} words
-          </span>
-          <span className="px-2 py-1 border border-black/10 bg-white dark:bg-indigo-900/30 rounded-lg">
-            {text1.length + text2.length} characters
-          </span>
+
+        <div className="mt-6 items-center hidden md:flex absolute left-6 bottom-6 justify-end gap-2 text-xs text-black dark:text-slate-400">
+          <span className="px-2 py-0.5 bg-purple-500/10 dark:bg-indigo-900/30 rounded-lg">{text1.split(" ").length + text2.split(" ").length - 2} words</span>
         </div>
       </div>
 
@@ -159,7 +139,7 @@ const LiveEditingCard = () => {
 // Real-time Collaboration Card
 const CollaborationCard = () => {
   const avatars = [
-    { color: "bg-slate-500", delay: 0 },
+    { color: "bg-blue-500", delay: 0 },
     { color: "bg-pink-500", delay: 0.2 },
     { color: "bg-orange-500", delay: 0.4 },
   ];
@@ -169,9 +149,9 @@ const CollaborationCard = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.1 }}
-      className="rounded-lg shadow-sm p-6 border border-black/5 relative overflow-hidden group"
+      className="rounded-lg p-6 border border-black/5 bg-orange-500/10 dark:bg-white/10 dark:border-white/10 relative overflow-hidden group"
     >
-      <Users className="w-6 h-6 text-slate-600 dark:text-slate-400 mb-3" />
+      <Users className="w-6 h-6 text-blue-500 dark:text-blue-400 mb-3" />
 
       <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Live Collaboration</h3>
       <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">Multiple users editing simultaneously</p>
@@ -190,19 +170,19 @@ const CollaborationCard = () => {
             }}
             className={`size-6 ${avatar.color} rounded-full border-2 border-white dark:border-slate-800 flex items-center justify-center text-white font-semibold text-sm shadow-lg`}
           >
-            {String.fromCharCode(65 + i)}
+            <User className="w-4"/>
           </motion.div>
         ))}
         <motion.div
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="ml-2 px-3 py-1 bg-slate-100 dark:bg-slate-900/30 rounded-full text-xs text-slate-700 dark:text-slate-300 font-medium"
+          className="ml-2 px-3 py-0.5 bg-slate-100 dark:bg-slate-900/30 border border-black/10 dark:border-white/10 rounded-lg text-xs text-slate-900 dark:text-slate-300 font-medium"
         >
           3 typing...
         </motion.div>
       </div>
 
-      <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-tl from-slate-300/30 dark:from-slate-700/30 rounded-full blur-xl" />
+      <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-tl from-orange-300/30 dark:from-orange-700/30 rounded-full blur-xl" />
     </motion.div>
   );
 };
@@ -221,7 +201,12 @@ const ShareableLinksCard = () => {
   }, []);
 
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.5 }} className="rounded-lg p-6 border border-black/5 overflow-hidden relative">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.5 }}
+      className="rounded-lg p-6 border border-black/10 bg-rose-500/5 dark:bg-white/10 dark:border-white/10 overflow-hidden relative"
+    >
       <Link2 className="w-6 h-6 text-rose-600 dark:text-rose-400 mb-3" />
 
       <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Shareable Links</h3>
@@ -235,12 +220,17 @@ const ShareableLinksCard = () => {
       </motion.div>
 
       {isCopied && (
-        <motion.div initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
-          Copied!
+        <motion.div
+          initial={{ opacity: 0, y: 5 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0 }}
+          className="absolute flex gap-0.5 items-center top-4 right-4 bg-blue-500 text-white text-xs px-2 py-0.5 rounded-lg"
+        >
+          <Check className="size-3" /> Copied!
         </motion.div>
       )}
 
-      <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-tl from-rose-300/30 dark:from-rose-700/30 rounded-full blur-xl" />
+      <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-tl from-violet-300/30 dark:from-pink-700/30 rounded-full blur-xl" />
     </motion.div>
   );
 };

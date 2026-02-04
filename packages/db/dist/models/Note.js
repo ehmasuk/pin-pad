@@ -1,5 +1,4 @@
-import mongoose from "mongoose";
-const { Schema, model, models } = mongoose;
+import mongoose, { Schema } from "mongoose";
 const NoteSchema = new Schema({
     noteName: {
         type: String,
@@ -14,7 +13,6 @@ const NoteSchema = new Schema({
     updatedAt: {
         type: Date,
         default: Date.now,
-        index: true,
     },
     password: {
         type: String,
@@ -26,6 +24,4 @@ const NoteSchema = new Schema({
     },
 }, { timestamps: true });
 NoteSchema.index({ updatedAt: 1 }, { expireAfterSeconds: 60 * 60 * 24 * 3 });
-const Note = models.Note || model("Note", NoteSchema);
-export default Note;
-//# sourceMappingURL=Note.js.map
+export const Note = mongoose.models.Note || mongoose.model("Note", NoteSchema);

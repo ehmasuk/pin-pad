@@ -1,6 +1,6 @@
 // server.ts
 import { Server } from "@hocuspocus/server";
-import { Note } from "@workspace/database";
+import { Note } from "@workspace/db";
 import * as Y from "yjs";
 const PORT = process.env.PORT || 7070;
 export function startListening() {

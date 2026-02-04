@@ -1,4 +1,4 @@
-import { Note, type NoteDocument } from "@workspace/database";
+import { Note, type NoteDocument } from "@workspace/db";
 import bcrypt from "bcryptjs";
 import type { Request, Response } from "express";
 import { z } from "zod";

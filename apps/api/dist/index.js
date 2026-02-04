@@ -1,4 +1,4 @@
-import { connectDb } from "@workspace/database";
+import { connectDb } from "@workspace/db";
 import env from "./config/env.js";
 import { startListening } from "./server.js";
 connectDb(env.MONGODB_URL, env.DB_NAME)

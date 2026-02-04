@@ -1,4 +1,4 @@
-import { Note } from "@workspace/database";
+import { Note } from "@workspace/db";
 import bcrypt from "bcryptjs";
 import { z } from "zod";
 import newError from "../utils/newError.js";

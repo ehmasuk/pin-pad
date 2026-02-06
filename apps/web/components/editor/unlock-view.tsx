@@ -72,7 +72,7 @@ export function UnlockView({ noteName, onVerified }: UnlockViewProps) {
               </Button>
             </div>
             {error && <p className="text-sm text-destructive text-center">{error}</p>}
-            <p className="text-[10px] text-muted-foreground/50 text-center uppercase tracking-widest">Secured by Share Note</p>
+            <p className="text-[10px] text-muted-foreground/50 text-center uppercase tracking-widest">Secured by PinPad</p>
           </div>
         </CardContent>
       </Card>

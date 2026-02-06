@@ -90,7 +90,7 @@ export default function Editor({ id, onEditorReady }: EditorProps) {
           </div>
           <div className="space-y-2">
             <h3 className="text-lg font-semibold text-foreground">Connecting to Server...</h3>
-            <p className="text-sm text-muted-foreground">We're hosted on a free server, so it might take a moment to wake up. We appreciate your patience! 🙏</p>
+            <p className="text-sm text-muted-foreground">We're hosted on a free server, so it might take a moment to wake up only for the first time. We appreciate your patience! 🙂</p>
           </div>
           <div className="flex items-center gap-2 text-xs text-muted-foreground/70">
             <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />

@@ -33,7 +33,7 @@ export function ShareModal({ isOpen, onClose, isLocked }: ShareModalProps) {
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Share2 className="h-5 w-5" />
-            Share Note
+            PinPad
           </DialogTitle>
           <DialogDescription>Anyone with the link can edit this note.</DialogDescription>
         </DialogHeader>

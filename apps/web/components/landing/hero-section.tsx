@@ -9,8 +9,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@workspace/ui/components/input-group";
-import Bento from "./Bento";
 import Navbar from "./navbar";
+import Bento from "./bento";
 
 export default function HeroSection() {
   const router = useRouter();
@@ -70,7 +70,7 @@ const CustomLinkInput = () => {
 
   return (
     <form onSubmit={createCustomNote} className="relative group">
-      <InputGroup className="border-2 border-purple-600 h-12 dark:border-slate-300 focus:shadow-none md:min-w-90 bg-white dark:bg-slate-900">
+      <InputGroup className="border-3 border-slate-900 h-12 dark:border-slate-300  md:min-w-90 bg-white dark:bg-slate-900">
         <InputGroupInput
           minLength={10}
           type="text"

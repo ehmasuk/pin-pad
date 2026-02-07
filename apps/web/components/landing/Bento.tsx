@@ -83,7 +83,7 @@ const LiveEditingCard = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="md:col-span-2 border bg-purple-500/5 dark:bg-white/10 border-black/5 dark:border-white/10 lg:row-span-2 rounded-lg p-6 overflow-hidden relative group"
+      className="md:col-span-2 border bg-slate-500/10 dark:bg-white/10 border-black/5 dark:border-white/10 lg:row-span-2 rounded-lg p-6 overflow-hidden relative group"
     >
       <div className="flex items-center justify-between">
         <Logo size="sm" />
@@ -149,7 +149,7 @@ const CollaborationCard = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.1 }}
-      className="rounded-lg p-6 border border-black/5 bg-orange-500/10 dark:bg-white/10 dark:border-white/10 relative overflow-hidden group"
+      className="rounded-lg p-6 border border-black/5 bg-slate-500/10 dark:bg-white/10 dark:border-white/10 relative overflow-hidden group"
     >
       <Users className="w-6 h-6 text-blue-500 dark:text-blue-400 mb-3" />
 
@@ -205,7 +205,7 @@ const ShareableLinksCard = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.5 }}
-      className="rounded-lg p-6 border border-black/10 bg-rose-500/5 dark:bg-white/10 dark:border-white/10 overflow-hidden relative"
+      className="rounded-lg p-6 border border-black/10 bg-slate-500/10 dark:bg-white/10 dark:border-white/10 overflow-hidden relative"
     >
       <Link2 className="w-6 h-6 text-rose-600 dark:text-rose-400 mb-3" />
 

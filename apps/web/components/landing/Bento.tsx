@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Check, Clipboard, Link2, Lock, Share2, User, Users } from "lucide-react";
 import { useEffect, useState } from "react";
 import Logo from "../global/Logo";

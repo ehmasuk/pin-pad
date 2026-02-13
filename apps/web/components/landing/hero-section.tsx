@@ -10,7 +10,7 @@ import { useState } from "react";
 
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@workspace/ui/components/input-group";
 import Navbar from "@/components/landing/navbar";
-import { Bento } from "@/components/landing/bento";
+import { Bento } from "@/components/landing/Bento";
 
 export default function HeroSection() {
   const router = useRouter();

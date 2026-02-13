@@ -9,8 +9,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@workspace/ui/components/input-group";
+import { Bento } from "./bento";
 import Navbar from "./navbar";
-import Bento from "./bento";
 
 export default function HeroSection() {
   const router = useRouter();

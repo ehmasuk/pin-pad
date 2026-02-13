@@ -5,7 +5,7 @@ import { Check, Clipboard, Link2, Lock, Share2, User, Users } from "lucide-react
 import { useEffect, useState } from "react";
 import Logo from "../global/Logo";
 
-const Bento = () => {
+export const Bento = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {/* Live Editing Feature - Large */}
@@ -235,4 +235,4 @@ const ShareableLinksCard = () => {
   );
 };
 
-export default Bento;
+
